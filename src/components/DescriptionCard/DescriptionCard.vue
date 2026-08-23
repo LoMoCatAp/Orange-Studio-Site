@@ -17,31 +17,32 @@ defineOptions({ name: 'DescriptionCard' })
 }
 .desc-card {
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: #fff;
+  background: var(--color-surface);
+  color: var(--color-text);
   line-height: 1.6;
   width: 100%;
   box-sizing: border-box;
   min-height: 280px;
-  box-shadow: 0 2px 8px rgba(31, 45, 61, 0.06);
+  box-shadow: 0 2px 8px var(--color-card-shadow);
   transition:
     box-shadow 0.2s ease,
     border-color 0.2s ease,
     transform 0.08s ease;
 }
 .desc-card:hover {
-  box-shadow: 0 8px 24px rgba(31, 45, 61, 0.18);
-  border-color: #c7d2fe;
+  box-shadow: 0 8px 24px var(--color-card-shadow);
+  border-color: var(--color-border-hover);
   transform: translateY(-2px);
 }
 .desc-card :deep(h4) {
   margin: 12px 0 8px;
-  color: #374151;
+  color: var(--color-heading);
   font-weight: 600;
 }
 .desc-card :deep(p) {
-  color: #6b7280;
+  color: var(--color-text-secondary);
   font-size: 14px;
   margin-bottom: 8px;
 }

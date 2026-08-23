@@ -83,11 +83,14 @@ async function handleQuery(value) {
 <style scoped>
 .page {
   padding-top: 96px;
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-text);
 }
 
 .query-row {
   width: 100%;
-  background: #fff;
+  background: var(--color-surface);
   padding: 16px 0;
 }
 

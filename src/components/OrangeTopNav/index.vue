@@ -8,9 +8,9 @@
       <nav class="nav-right" v-if="!isMobile">
         <a class="nav-item" @click="goHome">官网主页</a>
 
-        <div class="nav-item dropdown" @mouseenter="onDeptEnter" @mouseleave="onDeptLeave">
+        <div class="nav-item dropdown" @mouseenter="openMenu('dept')" @mouseleave="scheduleMenuClose">
           <span @click="goToDepartments">工作部门</span>
-          <div v-if="active === 'dept'" class="dropdown-menu" @click.stop @mouseenter="onDeptEnter" @mouseleave="onDeptLeave">
+          <div v-if="active === 'dept'" class="dropdown-menu" @click.stop>
             <div class="menu-item" @click="jump('/orange学习部')">
               <strong>学习部</strong>
               <p>指定学习计划 / 储备资源 / 培训基础 / 组织考核</p>
@@ -31,7 +31,7 @@
           </div>
         </div>
 
-        <div class="nav-item dropdown" @click.stop="toggle('group')">
+        <div class="nav-item dropdown" @mouseenter="openMenu('group')" @mouseleave="scheduleMenuClose">
           <span>学习小组</span>
           <div v-if="active === 'group'" class="dropdown-menu">
             <div class="menu-item" @click="jump('/full-stack')">
@@ -50,20 +50,20 @@
               <strong>嵌入式组</strong>
               <p>用芯编织代码，让幻想的羽翼在现实世界翱翔</p>
             </div>
-            <div class="menu-item" @click="jump('/orange 短视频')">
+            <div class="menu-item" @click="jump('/Orange 短视频')">
               <strong>短视频组</strong>
               <p>制作宣传视频 / 视觉传播 / 剪辑精彩</p>
             </div>
-            <div class="menu-item" @click="jump('/orange 开发')">
+            <div class="menu-item" @click="jump('/Orange 开发')">
               <strong>开发组</strong>
               <p>学习结合实践，增长项目经验</p>
             </div>
           </div>
         </div>
 
-        <div class="nav-item dropdown" @click.stop="toggle('base')">
+        <div class="nav-item dropdown" @mouseenter="openMenu('base')" @mouseleave="scheduleMenuClose">
           <span>橙果基建</span>
-          <div v-if="active === 'base'" class="dropdown-menu simple">
+          <div v-if="active === 'base'" class="dropdown-menu align-right">
             <div class="menu-item" @click="jump('/Register')">在线报名</div>
             <div class="menu-item" @click="jump('/student-query')">查询报名状态</div>
             <div class="menu-item" @click="jump('/infra/repair-book')">电脑义诊预约</div>
@@ -89,7 +89,7 @@
         </div>
         <div class="mobile-item" @click="toggle('group')">学习小组</div>
         <div v-if="active === 'group'" class="mobile-sub">
-          <div @click="jump('full-stack')">全栈组</div>
+          <div @click="jump('/full-stack')">全栈组</div>
           <div @click="jump('/hardware')">硬件组</div>
           <div @click="jump('/data')">大数据组</div>
           <div @click="jump('/embedded')">嵌入式组</div>
@@ -98,7 +98,7 @@
         </div>
         <div class="mobile-item" @click="toggle('base')">橙果基建</div>
         <div v-if="active === 'base'" class="mobile-sub">
-          <div @click="jump('/infra/apply')">在线报名</div>
+          <div @click="jump('/Register')">在线报名</div>
           <div @click="jump('/student-query')">查询报名状态</div>
           <div @click="jump('/infra/repair-book')">电脑义诊预约</div>
           <div @click="jump('/phone-query')">电脑义诊查询</div>
@@ -114,21 +114,21 @@ import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import logo from '@/assets/logo.png'
 
 const active = ref('')
-let deptLeaveTimer: any = null
+let menuLeaveTimer: ReturnType<typeof setTimeout> | null = null
 
-function onDeptEnter() {
-  if (deptLeaveTimer) {
-    clearTimeout(deptLeaveTimer)
-    deptLeaveTimer = null
+function openMenu(key: string) {
+  if (menuLeaveTimer) {
+    clearTimeout(menuLeaveTimer)
+    menuLeaveTimer = null
   }
-  active.value = 'dept'
+  active.value = key
 }
 
-function onDeptLeave() {
-  deptLeaveTimer = setTimeout(() => {
+function scheduleMenuClose() {
+  menuLeaveTimer = setTimeout(() => {
     active.value = ''
-    deptLeaveTimer = null
-  }, 400) // 延迟400ms关闭
+    menuLeaveTimer = null
+  }, 120)
 }
 const isMobile = ref(false)
 const mobileOpen = ref(false)
@@ -225,6 +225,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  if (menuLeaveTimer) clearTimeout(menuLeaveTimer)
   window.removeEventListener('resize', handleResize)
   document.removeEventListener('click', handleClickOutside)
 })
@@ -283,13 +284,15 @@ onUnmounted(() => {
   cursor: pointer;
   color: #ffffff;
   line-height: 96px;
-  transition: all 0.3s ease;
+  transition: color 0.15s ease, text-shadow 0.15s ease;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .nav-item:hover {
   color: #fff;
-  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.6);
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.55),
+    0 2px 4px rgba(0, 0, 0, 0.26);
 }
 
 .nav-item::after {
@@ -302,7 +305,7 @@ onUnmounted(() => {
   height: 2px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 1px;
-  transition: width 0.3s ease;
+  transition: width 0.15s ease;
   box-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
 }
 
@@ -319,25 +322,32 @@ onUnmounted(() => {
   top: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
-  background: #ffffff;
-  color: #333;
+  background: var(--color-background);
+  color: var(--color-text);
   min-width: 300px;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-border);
   padding: 8px 0;
   z-index: 1000;
-  animation: slideDown 0.3s ease;
+  animation: slideDown 0.16s ease;
 }
 
 @keyframes slideDown {
   from {
     opacity: 0;
-    transform: translateX(-50%) translateY(-10px);
+    translate: 0 -10px;
   }
   to {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    translate: 0;
   }
+}
+
+.dropdown-menu.align-right {
+  right: 0;
+  left: auto;
+  transform: none;
 }
 
 .dropdown-menu::before {
@@ -350,18 +360,26 @@ onUnmounted(() => {
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 8px solid #ffffff;
+  border-bottom: 8px solid var(--color-background);
 }
 
-.dropdown-menu.simple {
-  min-width: 180px;
+.dropdown-menu.align-right::before {
+  right: 32px;
+  left: auto;
+  transform: translateX(50%);
+}
+
+.dropdown-menu.align-right .menu-item {
+  color: var(--color-heading);
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .menu-item {
   padding: 12px 20px;
   line-height: 1.4;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, padding-left 0.15s ease;
   border-left: 3px solid transparent;
 }
 
@@ -373,7 +391,7 @@ onUnmounted(() => {
 
 .menu-item strong {
   display: block;
-  color: #1f2d3d;
+  color: var(--color-heading);
   font-weight: 600;
   font-size: 15px;
   margin-bottom: 4px;
@@ -382,16 +400,20 @@ onUnmounted(() => {
 .menu-item p {
   margin: 0;
   font-size: 12px;
-  color: #6b7280;
+  color: var(--color-text-secondary);
   line-height: 1.5;
 }
 
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
   cursor: pointer;
-  padding: 8px;
+  padding: 0;
 }
 
 .hamburger span {
@@ -417,7 +439,10 @@ onUnmounted(() => {
 }
 
 .mobile-item {
-  padding: 12px 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
@@ -439,6 +464,9 @@ onUnmounted(() => {
 }
 
 .mobile-sub div {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
   padding: 10px 0;
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);

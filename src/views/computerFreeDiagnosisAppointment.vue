@@ -135,7 +135,8 @@ html, body, #app {
 <style scoped>
     /* 页面容器，设置全屏背景色 */
     .page-container {
-        background-color: rgb(255, 255, 255);
+        background-color: var(--color-background);
+        color: var(--color-text);
         min-height: 100vh;
         width: 100%;
         display: flex;
@@ -149,15 +150,15 @@ html, body, #app {
     .nei {
         width: 1200px;
         max-width: calc(100% - 40px);
-        background-color: #ffffff;
+        background-color: var(--color-surface);
         border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 20px var(--color-card-shadow);
         overflow: hidden;
     }
     
     .top {
         height: 50px;
-        background-color: rgba(167, 145, 145, 0.3);
+        background-color: var(--color-accent-soft);
         padding-left: 2em;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
@@ -188,7 +189,9 @@ html, body, #app {
         width: 100%;
         line-height: 30px;
         font-size: 16px;
-        border: 1px solid #dcd4d4;
+        border: 1px solid var(--color-input-border);
+        background-color: var(--color-input);
+        color: var(--color-text);
         border-radius: 15px;
         padding-left: 1em;
         margin-top: 5px;
@@ -197,7 +200,7 @@ html, body, #app {
     
     .inp:focus {
         border: 1px solid #52b0db;
-        box-shadow: 5px 5px 15px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: 5px 5px 15px 3px var(--color-card-shadow);
     }
     
     /* 日期输入框样式 */
@@ -210,8 +213,9 @@ html, body, #app {
         height: 40px;
         width: 200px;
         line-height: 40px;
-        border: 1px solid #dcd4d4;
-        background-color: #fff;
+        border: 1px solid var(--color-input-border);
+        background-color: var(--color-input);
+        color: var(--color-text);
         border-radius: 5px;
         padding: 0 10px;
         font-size: 14px;
@@ -226,7 +230,7 @@ html, body, #app {
         padding-left: 1em;
         font-size: 14px;
         font-weight: 400;
-        color: #706d6d;
+        color: var(--color-text-secondary);
     }
     
     .bo {

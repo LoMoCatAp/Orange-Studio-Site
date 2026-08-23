@@ -14,6 +14,14 @@ import bottomNav from './components/bottomNav/bottomNav.vue'
 import ArcoVue from '@arco-design/web-vue';
 import '@arco-design/web-vue/dist/arco.css';
 
+const colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
+const syncArcoTheme = () => {
+  document.body.setAttribute('arco-theme', colorScheme.matches ? 'dark' : 'light')
+}
+
+syncArcoTheme()
+colorScheme.addEventListener('change', syncArcoTheme)
+
 const app = createApp(App)
 
 app.use(createPinia())

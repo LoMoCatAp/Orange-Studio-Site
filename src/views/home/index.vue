@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div ref="homeRoot" class="home-page">
    
 
     <!-- Hero 区域 -->
@@ -17,7 +17,9 @@
           </div>
         </div>
         <div class="hero-image">
-          <img :src="logoImage4" alt="橙果工作室" />
+          <div class="hero-logo-tilt" @mousemove="handleLogoTilt" @mouseleave="resetLogoTilt">
+            <img :src="logoImage4" alt="橙果工作室" />
+          </div>
         </div>
       </div>
     </section>
@@ -30,23 +32,23 @@
           橙果工作室是一个充满活力的技术学习社区，我们致力于为成员提供优质的学习环境、实践平台和发展机会。
         </p>
         <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">📚</div>
+          <div class="feature-card reveal-card">
+            <div class="feature-icon feature-icon--learning"><i class="fa fa-book" aria-hidden="true"></i></div>
             <h3>丰富的学习资源</h3>
             <p>提供系统化的学习计划和丰富的技术资料，帮助成员快速成长</p>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon">💻</div>
+          <div class="feature-card reveal-card">
+            <div class="feature-icon feature-icon--practice"><i class="fa fa-laptop" aria-hidden="true"></i></div>
             <h3>实践项目机会</h3>
             <p>参与真实项目开发，积累实战经验，提升技术能力</p>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon">👥</div>
+          <div class="feature-card reveal-card">
+            <div class="feature-icon feature-icon--team"><i class="fa fa-users" aria-hidden="true"></i></div>
             <h3>团队协作平台</h3>
             <p>与志同道合的伙伴一起学习、交流、成长</p>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon">🚀</div>
+          <div class="feature-card reveal-card">
+            <div class="feature-icon feature-icon--career"><i class="fa fa-rocket" aria-hidden="true"></i></div>
             <h3>职业发展支持</h3>
             <p>提供职业规划指导和技术能力认证，助力成员未来发展</p>
           </div>
@@ -60,19 +62,19 @@
         <h2 class="section-title">工作部门</h2>
         <p class="section-description">我们拥有多个专业部门，各司其职，共同推动工作室的发展</p>
         <div class="departments-grid">
-          <div class="department-card" @click="jump('/orange学习部')">
+          <div class="department-card reveal-card" @click="jump('/orange学习部')">
             <h3>学习部</h3>
             <p>指定学习计划 / 储备资源 / 培训基础 / 组织考核</p>
           </div>
-          <div class="department-card" @click="jump('/orange学习部')">
+          <div class="department-card reveal-card" @click="jump('/orange事务部')">
             <h3>事务部</h3>
             <p>社团管理 / 策划活动 / 整理记录 / 协助服务</p>
           </div>
-          <div class="department-card" @click="jump('/externalPropagandaDepartment')">
+          <div class="department-card reveal-card" @click="jump('/externalPropagandaDepartment')">
             <h3>外宣部</h3>
             <p>对外宣传 / 承办活动 / 外联商企 / 内联学校</p>
           </div>
-          <div class="department-card" @click="jump('/DevelopDepartment')">
+          <div class="department-card reveal-card" @click="jump('/DevelopDepartment')">
             <h3>开发部</h3>
             <p>学习结合实践，增长项目经验</p>
           </div>
@@ -86,27 +88,27 @@
         <h2 class="section-title">学习小组</h2>
         <p class="section-description">加入感兴趣的学习小组，与同好一起探索技术的奥秘</p>
         <div class="groups-grid">
-          <div class="group-card" @click="jump('/full-stack')">
+          <div class="group-card reveal-card" @click="jump('/full-stack')">
             <h3>全栈组</h3>
             <p>码出梦想，码出未来</p>
           </div>
-          <div class="group-card" @click="jump('/hardware')">
+          <div class="group-card reveal-card" @click="jump('/hardware')">
             <h3>硬件组</h3>
             <p>我们可不仅仅是修电脑的</p>
           </div>
-          <div class="group-card" @click="jump('/data')">
+          <div class="group-card reveal-card" @click="jump('/data')">
             <h3>大数据组</h3>
             <p>精于数据分析，提前洞察先机</p>
           </div>
-          <div class="group-card" @click="jump('/embedded')">
+          <div class="group-card reveal-card" @click="jump('/embedded')">
             <h3>嵌入式组</h3>
             <p>用芯编织代码，让幻想的羽翼在现实世界翱翔</p>
           </div>
-          <div class="group-card" @click="jump('/Orange 短视频')">
+          <div class="group-card reveal-card" @click="jump('/Orange 短视频')">
             <h3>短视频组</h3>
             <p>制作宣传视频 / 视觉传播 / 剪辑精彩</p>
           </div>
-          <div class="group-card" @click="jump('/Orange 开发')">
+          <div class="group-card reveal-card" @click="jump('/Orange 开发')">
             <h3>开发组</h3>
             <p>学习结合实践，增长项目经验</p>
           </div>
@@ -120,23 +122,23 @@
         <h2 class="section-title">橙果基建</h2>
         <p class="section-description">便捷的服务入口，快速访问常用功能</p>
         <div class="quick-access-grid">
-          <div class="access-card" @click="jump('/infra/apply')">
-            <div class="access-icon">📝</div>
+          <div class="access-card reveal-card" @click="jump('/Register')">
+            <div class="access-icon"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
             <h3>在线报名</h3>
             <p>加入橙果工作室</p>
           </div>
-          <div class="access-card" @click="jump('/student-query')">
-            <div class="access-icon">🔍</div>
+          <div class="access-card reveal-card" @click="jump('/student-query')">
+            <div class="access-icon"><i class="fa fa-search" aria-hidden="true"></i></div>
             <h3>查询报名状态</h3>
             <p>查看报名进度</p>
           </div>
-          <div class="access-card" @click="jump('/infra/repair-book')">
-            <div class="access-icon">💻</div>
+          <div class="access-card reveal-card" @click="jump('/infra/repair-book')">
+            <div class="access-icon"><i class="fa fa-laptop" aria-hidden="true"></i></div>
             <h3>电脑义诊预约</h3>
             <p>预约免费电脑诊断</p>
           </div>
-          <div class="access-card" @click="jump('/phone-query')">
-            <div class="access-icon">📱</div>
+          <div class="access-card reveal-card" @click="jump('/phone-query')">
+            <div class="access-icon"><i class="fa fa-mobile" aria-hidden="true"></i></div>
             <h3>电脑义诊查询</h3>
             <p>查询预约状态</p>
           </div>
@@ -145,11 +147,17 @@
     </section>
     <h2 class="section-title">数据橙果</h2>
     <data-orange />
-    <div class="flex justify-center mt-20">
-      <button
-      class="bg-blue-500 p-4 rounded-full text-white flex items-center hover:shadow-xl hover:translate-y-0.5 transition">
-      <span class="font-bold mr-1" @click="$router.push({ name: 'Register'})">加入橙果工作室<i class="fa fa-arrow-right ml-2 inline-block" aria-hidden="true"></i></span>
-    </button>
+    <div ref="ctaReveal" class="join-orange-cta-wrap cta-reveal">
+      <div class="join-orange-cta-stage">
+        <button
+          type="button"
+          class="join-orange-cta bg-blue-500 p-4 rounded-full text-white flex items-center hover:shadow-xl hover:translate-y-0.5 transition"
+          @click="$router.push({ name: 'Register' })"
+          @animationend="handleCtaAnimationEnd"
+        >
+          <span class="font-bold mr-1">加入橙果工作室<i class="fa fa-arrow-right ml-2 inline-block" aria-hidden="true"></i></span>
+        </button>
+      </div>
   </div>
   </div>
 </template>
@@ -162,6 +170,11 @@ import dataOrange from '@/views/home/components/dataOrange.vue'
 defineOptions({ name: 'Home' })
 
 const router = useRouter()
+const homeRoot = ref<HTMLElement | null>(null)
+const ctaReveal = ref<HTMLElement | null>(null)
+let revealObserver: IntersectionObserver | undefined
+let ctaObserver: IntersectionObserver | undefined
+let revealTimers: number[] = []
 
 const logoImage = new URL('@/assets/logo.png', import.meta.url).href
 const logoImage4 = new URL('@/assets/logo4-DX7cGJ5Y.png', import.meta.url).href
@@ -185,6 +198,28 @@ const jump = (path: string) => {
   router.replace(path)
 }
 
+const handleLogoTilt = (event: MouseEvent) => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+  const target = event.currentTarget
+  if (!(target instanceof HTMLElement)) return
+
+  const rect = target.getBoundingClientRect()
+  const offsetX = (event.clientX - rect.left) / rect.width - 0.5
+  const offsetY = (event.clientY - rect.top) / rect.height - 0.5
+
+  target.style.setProperty('--logo-tilt-x', `${-offsetY * 15}deg`)
+  target.style.setProperty('--logo-tilt-y', `${offsetX * 15}deg`)
+}
+
+const resetLogoTilt = (event: MouseEvent) => {
+  const target = event.currentTarget
+  if (!(target instanceof HTMLElement)) return
+
+  target.style.setProperty('--logo-tilt-x', '0deg')
+  target.style.setProperty('--logo-tilt-y', '0deg')
+}
+
 const scrollToSection = (id: string) => {
   const element = document.getElementById(id)
   if (element) {
@@ -196,6 +231,22 @@ const scrollToSection = (id: string) => {
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
   activeSection.value = ''
+}
+
+const revealCtaIfVisible = () => {
+  const cta = ctaReveal.value
+  if (!cta || cta.classList.contains('is-visible')) return
+
+  const rect = cta.getBoundingClientRect()
+  if (rect.top < window.innerHeight * 0.64 && rect.bottom > 0) {
+    cta.classList.add('is-visible')
+  }
+}
+
+const handleCtaAnimationEnd = (event: AnimationEvent) => {
+  if (event.target === event.currentTarget) {
+    ctaReveal.value?.classList.add('is-entered')
+  }
 }
 
 const handleScroll = () => {
@@ -224,6 +275,8 @@ const handleScroll = () => {
   if (window.scrollY < 100) {
     activeSection.value = ''
   }
+
+  revealCtaIfVisible()
 }
 
 const handleClickOutside = (e: MouseEvent) => {
@@ -234,12 +287,62 @@ const handleClickOutside = (e: MouseEvent) => {
 }
 
 onMounted(() => {
+  const revealGrids = homeRoot.value?.querySelectorAll<HTMLElement>(
+    '.features-grid, .departments-grid, .groups-grid, .quick-access-grid',
+  ) ?? []
+  const reveal = (element: HTMLElement) => element.classList.add('is-visible')
+  const revealGridInSequence = (grid: HTMLElement) => {
+    grid.querySelectorAll<HTMLElement>('.reveal-card').forEach((card, index) => {
+      const timer = window.setTimeout(() => reveal(card), index * 220)
+      revealTimers.push(timer)
+    })
+  }
+  const supportsIntersectionObserver = Boolean(
+    (window as Window & { IntersectionObserver?: typeof IntersectionObserver }).IntersectionObserver,
+  )
+
+  if (supportsIntersectionObserver) {
+    homeRoot.value?.classList.add('motion-ready')
+    ctaReveal.value?.classList.add('can-animate')
+    revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            revealGridInSequence(entry.target as HTMLElement)
+            revealObserver?.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.18 },
+    )
+    revealGrids.forEach((grid) => revealObserver?.observe(grid))
+
+    if (ctaReveal.value) {
+      ctaObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              reveal(entry.target as HTMLElement)
+              ctaObserver?.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0.6 },
+      )
+      ctaObserver.observe(ctaReveal.value)
+    }
+  }
+
   window.addEventListener('scroll', handleScroll)
   document.addEventListener('click', handleClickOutside)
   handleScroll() // 初始检查
 })
 
 onUnmounted(() => {
+  revealObserver?.disconnect()
+  ctaObserver?.disconnect()
+  revealTimers.forEach((timer) => window.clearTimeout(timer))
+  revealTimers = []
   window.removeEventListener('scroll', handleScroll)
   document.removeEventListener('click', handleClickOutside)
 })
@@ -248,6 +351,12 @@ onUnmounted(() => {
 <style scoped>
 .home-page {
   width: 100%;
+  overflow-x: hidden;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
 }
 
 /* 首页导航 */
@@ -399,6 +508,61 @@ onUnmounted(() => {
   z-index: 1;
 }
 
+.hero-text {
+  animation: heroTextIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.1s;
+}
+
+.hero-image {
+  animation: heroImageIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.2s;
+}
+
+@keyframes heroTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroImageIn {
+  from {
+    opacity: 0;
+    transform: translateX(28px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.home-page.motion-ready .reveal-card {
+  opacity: 0;
+  transform: translate3d(-52px, 12px, 0) scale(0.985);
+  filter: blur(4px);
+  transition:
+    opacity 560ms ease,
+    transform 920ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 440ms ease;
+}
+
+.home-page.motion-ready .reveal-card.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: none;
+}
+
+.home-page.motion-ready .feature-card.reveal-card.is-visible:hover,
+.home-page.motion-ready .department-card.reveal-card.is-visible:hover,
+.home-page.motion-ready .group-card.reveal-card.is-visible:hover,
+.home-page.motion-ready .access-card.reveal-card.is-visible:hover {
+  transform: translate3d(0, -4px, 0) scale(1);
+}
+
 .hero-title {
   font-size: 64px;
   font-weight: 700;
@@ -465,7 +629,18 @@ onUnmounted(() => {
   align-items: center;
 }
 
+.hero-logo-tilt {
+  --logo-tilt-x: 0deg;
+  --logo-tilt-y: 0deg;
+  max-width: 100%;
+  transform: perspective(680px) rotateX(var(--logo-tilt-x)) rotateY(var(--logo-tilt-y)) scale(1.025);
+  transform-style: preserve-3d;
+  transition: transform 130ms ease-out;
+  will-change: transform;
+}
+
 .hero-image img {
+  display: block;
   max-width: 100%;
   height: auto;
   filter: drop-shadow(0 10px 40px rgba(0, 0, 0, 0.3));
@@ -489,7 +664,7 @@ onUnmounted(() => {
   font-weight: 700;
   text-align: center;
   margin-bottom: 16px;
-  color: #1f2d3d;
+  color: var(--color-heading);
   position: relative;
 }
 
@@ -508,7 +683,7 @@ onUnmounted(() => {
 .section-description {
   font-size: 18px;
   text-align: center;
-  color: #6b7280;
+  color: var(--color-text-secondary);
   margin-bottom: 48px;
   max-width: 700px;
   margin-left: auto;
@@ -518,7 +693,7 @@ onUnmounted(() => {
 
 /* 关于我们 */
 .about-section {
-  background: #f9fafb;
+  background: var(--color-background-soft);
 }
 
 .features-grid {
@@ -529,13 +704,13 @@ onUnmounted(() => {
 }
 
 .feature-card {
-  background: white;
+  background: var(--color-background);
   padding: 40px 32px;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border: 2px solid var(--color-border);
 }
 
 .feature-card:hover {
@@ -545,25 +720,51 @@ onUnmounted(() => {
 }
 
 .feature-icon {
-  font-size: 48px;
-  margin-bottom: 16px;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  font-size: 34px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.16));
+}
+
+.feature-icon--learning {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.feature-icon--practice {
+  color: #0369a1;
+  background: #dbeafe;
+}
+
+.feature-icon--team {
+  color: #047857;
+  background: #d1fae5;
+}
+
+.feature-icon--career {
+  color: #7e22ce;
+  background: #f3e8ff;
 }
 
 .feature-card h3 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #1f2d3d;
+  color: var(--color-heading);
 }
 
 .feature-card p {
-  color: #6b7280;
+  color: var(--color-text-secondary);
   line-height: 1.6;
 }
 
 /* 工作部门 */
 .departments-section {
-  background: white;
+  background: var(--color-background);
 }
 
 .departments-grid {
@@ -600,13 +801,13 @@ onUnmounted(() => {
 }
 
 .department-card p {
-  color: #6b7280;
+  color: var(--color-text-secondary);
   line-height: 1.6;
 }
 
 /* 学习小组 */
 .groups-section {
-  background: #f9fafb;
+  background: var(--color-background-soft);
 }
 
 .groups-grid {
@@ -616,12 +817,12 @@ onUnmounted(() => {
 }
 
 .group-card {
-  background: white;
+  background: var(--color-background);
   padding: 32px;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border: 2px solid var(--color-border);
 }
 
 .group-card:hover {
@@ -634,17 +835,17 @@ onUnmounted(() => {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #1f2d3d;
+  color: var(--color-heading);
 }
 
 .group-card p {
-  color: #6b7280;
+  color: var(--color-text-secondary);
   line-height: 1.6;
 }
 
 /* 快速入口 - 使用橙绿渐变 */
 .quick-access-section {
-  background: white;
+  background: var(--color-background);
 }
 
 .quick-access-grid {
@@ -691,6 +892,7 @@ onUnmounted(() => {
   margin-bottom: 16px;
   position: relative;
   z-index: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
 }
 
 .access-card h3 {
@@ -706,6 +908,172 @@ onUnmounted(() => {
   font-size: 14px;
   position: relative;
   z-index: 1;
+}
+
+.join-orange-cta-wrap {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 192px;
+  padding: 64px 16px 80px;
+  background: var(--color-background);
+  contain: layout paint;
+}
+
+.join-orange-cta-wrap.can-animate {
+  opacity: 1;
+  transform: none;
+}
+
+.join-orange-cta-wrap.can-animate .join-orange-cta {
+  opacity: 0;
+  transform: translate3d(-102%, 0, 0);
+  will-change: opacity, transform;
+}
+
+.join-orange-cta-wrap.can-animate.is-visible .join-orange-cta {
+  animation: ctaReveal 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: transform 150ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.join-orange-cta-wrap.can-animate.is-visible.is-entered .join-orange-cta {
+  animation: none;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes ctaReveal {
+  from {
+    opacity: 0;
+    transform: translate3d(-102%, 0, 0);
+  }
+  72% {
+    opacity: 1;
+    transform: translate3d(2px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.join-orange-cta-stage {
+  display: inline-flex;
+  overflow: hidden;
+  border-radius: 999px;
+  transform: translateZ(0);
+}
+
+.join-orange-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.join-orange-cta::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  border-radius: inherit;
+  opacity: 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), inset 0 0 16px rgba(255, 255, 255, 0.2);
+  transition: opacity 160ms ease;
+  pointer-events: none;
+}
+
+.join-orange-cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -76px;
+  width: 68px;
+  z-index: 0;
+  opacity: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 10%,
+    rgba(255, 255, 255, 0.18) 35%,
+    rgba(255, 255, 255, 0.82) 50%,
+    rgba(255, 255, 255, 0.18) 65%,
+    transparent 90%
+  );
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.35);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+
+.join-orange-cta > span {
+  position: relative;
+  z-index: 1;
+}
+
+.join-orange-cta-wrap.is-visible .join-orange-cta::after {
+  animation: ctaGlint 720ms 500ms ease-out both;
+}
+
+.join-orange-cta-wrap.is-visible .join-orange-cta:hover::after,
+.join-orange-cta-wrap.is-visible .join-orange-cta:focus-visible::after {
+  animation: ctaGlint 860ms ease-out both;
+}
+
+.join-orange-cta-wrap.can-animate.is-visible.is-entered .join-orange-cta:hover {
+  animation: none;
+  opacity: 1;
+  transform: translate3d(0, -2px, 0);
+  filter: brightness(1.08);
+  box-shadow: 0 12px 28px rgba(59, 130, 246, 0.52);
+}
+
+.join-orange-cta-wrap.is-visible .join-orange-cta:hover::before,
+.join-orange-cta-wrap.is-visible .join-orange-cta:focus-visible::before {
+  opacity: 1;
+}
+
+.join-orange-cta-wrap.can-animate.is-visible.is-entered .join-orange-cta:active {
+  animation: none;
+  opacity: 1;
+  transform: translate3d(0, 1px, 0) scale(0.96);
+  filter: brightness(0.94);
+  box-shadow: 0 3px 8px rgba(30, 64, 175, 0.42);
+  transition-duration: 70ms;
+}
+
+@keyframes ctaGlint {
+  0% {
+    left: -76px;
+    opacity: 0;
+  }
+  16% {
+    opacity: 0.85;
+  }
+  100% {
+    left: calc(100% + 76px);
+    opacity: 0;
+  }
+}
+
+.join-orange-cta:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .department-card {
+    background:
+      linear-gradient(135deg, rgba(255, 165, 0, 0.12) 0%, rgba(50, 205, 50, 0.1) 100%),
+      var(--color-background-soft);
+    border-color: var(--color-border);
+  }
+
+  .department-card:hover {
+    background:
+      linear-gradient(135deg, rgba(255, 165, 0, 0.18) 0%, rgba(50, 205, 50, 0.16) 100%),
+      var(--color-background-soft);
+  }
 }
 
 /* 响应式设计 */
@@ -806,6 +1174,96 @@ onUnmounted(() => {
   .btn-secondary {
     padding: 12px 24px;
     font-size: 14px;
+  }
+
+  .features-grid,
+  .departments-grid,
+  .groups-grid,
+  .quick-access-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .features-grid {
+    margin-top: 32px;
+  }
+
+  .feature-card,
+  .department-card,
+  .group-card,
+  .access-card {
+    padding: 22px 14px;
+  }
+
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 12px;
+    font-size: 24px;
+  }
+
+  .feature-card h3,
+  .access-card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .department-card h3,
+  .group-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .feature-card p,
+  .department-card p,
+  .group-card p,
+  .access-card p {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .access-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section::before,
+  .hero-text,
+  .hero-image,
+  .hero-image img,
+  .reveal-card,
+  .reveal-card.is-visible {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-logo-tilt,
+  .join-orange-cta-wrap.can-animate,
+  .join-orange-cta-wrap.can-animate .join-orange-cta,
+  .join-orange-cta::after {
+    transition: none;
+  }
+
+  .join-orange-cta-wrap.can-animate,
+  .join-orange-cta-wrap.can-animate.is-visible {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .join-orange-cta-wrap.can-animate .join-orange-cta,
+  .join-orange-cta-wrap.can-animate.is-visible .join-orange-cta {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .join-orange-cta-wrap.is-visible .join-orange-cta::after {
+    animation: none;
   }
 }
 </style>

@@ -23,6 +23,8 @@
 
 /* semantic color variables for this project */
 :root {
+  color-scheme: light;
+
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
@@ -32,12 +34,26 @@
 
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
+  --color-text-secondary: #6b7280;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface-muted: #eff3f9;
+  --color-input: #ffffff;
+  --color-input-border: #e3e6ec;
+  --color-accent-soft: rgba(0, 97, 242, 0.08);
+  --color-danger-soft: #ffebe8;
+  --color-danger-soft-hover: #fdcdc5;
+  --color-card-shadow: rgba(31, 45, 61, 0.1);
+  --color-scrollbar-thumb: #9ca3af;
+  --color-scrollbar-thumb-hover: #6b7280;
 
   --section-gap: 160px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    color-scheme: dark;
+
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
     --color-background-mute: var(--vt-c-black-mute);
@@ -47,7 +63,60 @@
 
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
+    --color-text-secondary: rgba(235, 235, 235, 0.72);
+    --color-surface: #242424;
+    --color-surface-raised: #2c2c2c;
+    --color-surface-muted: #1f1f1f;
+    --color-input: #202020;
+    --color-input-border: #4b5563;
+    --color-accent-soft: rgba(96, 165, 250, 0.16);
+    --color-danger-soft: #4a2626;
+    --color-danger-soft-hover: #633030;
+    --color-card-shadow: rgba(0, 0, 0, 0.34);
+    --color-scrollbar-thumb: #52525b;
+    --color-scrollbar-thumb-hover: #71717a;
+
+    /* Arco Design uses these variables throughout inputs, selects, modals and steps. */
+    --color-text-1: #f4f4f5;
+    --color-text-2: #d4d4d8;
+    --color-text-3: #a1a1aa;
+    --color-text-4: #71717a;
+    --color-fill-1: #292929;
+    --color-fill-2: #303030;
+    --color-fill-3: #3a3a3a;
+    --color-fill-4: #4a4a4a;
+    --color-bg-1: #242424;
+    --color-bg-2: #2a2a2a;
+    --color-bg-3: #303030;
+    --color-bg-4: #373737;
+    --color-border-1: #3f3f46;
+    --color-border-2: #52525b;
+    --color-border-3: #71717a;
+    --color-border-4: #a1a1aa;
   }
+}
+
+html {
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-background);
+  scrollbar-gutter: stable;
+}
+
+html::-webkit-scrollbar {
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+  border: 3px solid var(--color-background);
+  border-radius: 999px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scrollbar-thumb-hover);
 }
 
 *,

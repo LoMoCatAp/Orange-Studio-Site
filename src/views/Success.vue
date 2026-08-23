@@ -93,7 +93,8 @@ const goToRegister = () => {
 .success-page {
   width: 100vw;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: var(--color-background);
+  color: var(--color-text);
   font-family: "Microsoft YaHei", sans-serif;
 }
 
@@ -149,13 +150,13 @@ const goToRegister = () => {
 
 .slogan h2 {
   font-size: 24px;
-  color: #333;
+  color: var(--color-heading);
   margin-bottom: 10px;
 }
 
 .slogan p {
   font-size: 14px;
-  color: #666;
+  color: var(--color-text-secondary);
 }
 
 
@@ -168,7 +169,7 @@ const goToRegister = () => {
 }
 
 .card {
-  background-color: #fff;
+  background-color: var(--color-surface);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -204,13 +205,13 @@ const goToRegister = () => {
 .card-title {
   font-size: 16px;
   font-weight: bold;
-  color: #333;
+  color: var(--color-heading);
   margin-bottom: 10px;
 }
 
 .card-desc {
   font-size: 14px;
-  color: #666;
+  color: var(--color-text-secondary);
   line-height: 1.6;
 }
 
@@ -222,14 +223,14 @@ const goToRegister = () => {
 
 .prompt {
   font-size: 18px;
-  color: #333;
+  color: var(--color-heading);
   font-weight: bold;
   margin-bottom: 5px;
 }
 
 .sub-prompt {
   font-size: 14px;
-  color: #666;
+  color: var(--color-text-secondary);
   margin-bottom: 20px;
 }
 

@@ -27,9 +27,9 @@ const handleSubmit = async ({ values, errors }: any) => {
 </script>
 
 <template>
-  <div class="mx-4 sm:mx-[4rem] rounded-md bg-white">
-    <div class="px-4 py-6 text-[#0061f2] font-semibold bg-[rgba(0,0,0,.03)]">请在下方填写你的报名信息</div>
-    <div class="p-5 flex flex-col text-[#687281]">
+  <div class="form-card mx-4 sm:mx-[4rem] rounded-md">
+    <div class="form-card__header px-4 py-6 font-semibold">请在下方填写你的报名信息</div>
+    <div class="form-card__body p-5 flex flex-col">
       <a-form ref="formRef" layout="vertical" :model="enrolment" @submit="handleSubmit">
         <a-form-item field="name" label="姓名" :rules="[{ required: true, message: '必填' }]">
           <a-input v-model="enrolment.name" placeholder="请输入你的姓名" />
@@ -88,39 +88,65 @@ const handleSubmit = async ({ values, errors }: any) => {
 </template>
 
 <style scoped>
+.form-card {
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 0.15rem 1.75rem var(--color-card-shadow);
+}
+
+.form-card__header {
+  color: #2563eb;
+  background: var(--color-accent-soft);
+}
+
+.form-card__body {
+  color: var(--color-text-secondary);
+}
+
+.arco-form:deep(.arco-form-item-label-col > .arco-form-item-label) {
+  color: var(--color-text);
+}
+
 .arco-form:deep(.arco-input-wrapper) {
   border-radius: 24px;
-  border: solid 1px #e3e6ec;
-  background-color: white;
+  border: solid 1px var(--color-input-border);
+  background-color: var(--color-input);
+}
+
+.arco-form:deep(.arco-input),
+.arco-form:deep(.arco-input::placeholder),
+.arco-form:deep(.arco-select-view-value),
+.arco-form:deep(.arco-select-view-placeholder) {
+  color: var(--color-text-secondary);
 }
 
 .arco-form:deep(.arco-input-error) {
   border: solid 1px #F56C6C;
-  background-color: rgb(255, 236, 232);
+  background-color: var(--color-danger-soft);
 }
 
 .arco-form:deep(.arco-input-error):hover {
-  background-color: rgb(253, 205, 197);
+  background-color: var(--color-danger-soft-hover);
 }
 
 .arco-form:deep(.arco-select) {
   border-radius: 24px;
-  border: solid 1px #e3e6ec;
-  background-color: white;
+  border: solid 1px var(--color-input-border);
+  background-color: var(--color-input);
 }
 
 .arco-form:deep(.arco-textarea-wrapper) {
   border-radius: 12px;
-  border: solid 1px #e3e6ec;
-  background-color: white;
+  border: solid 1px var(--color-input-border);
+  background-color: var(--color-input);
 }
 
 .arco-form:deep(.arco-textarea-error) {
   border: solid 1px #F56C6C;
-  background-color: rgb(255, 236, 232);
+  background-color: var(--color-danger-soft);
 }
 
 .arco-form:deep(.arco-textarea-error):hover {
-  background-color: rgb(253, 205, 197);
+  background-color: var(--color-danger-soft-hover);
 }
 </style>

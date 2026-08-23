@@ -110,7 +110,9 @@ async function onSubmit() {
   height: 36px;
   padding: 0 12px;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-input-border);
+  background: var(--color-input);
+  color: var(--color-text);
   font-size: 14px;
   outline: none;
   transition: border 0.2s ease;
@@ -122,13 +124,14 @@ async function onSubmit() {
   height: 36px;
   padding: 0 18px;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  background: #fff;
+  border: 1px solid var(--color-input-border);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
   cursor: pointer;
   font-size: 14px;
 }
 .query-btn:hover {
-  background: #f5f7fa;
+  background: var(--color-surface-muted);
 }
 .query-btn:disabled {
   opacity: 0.6;

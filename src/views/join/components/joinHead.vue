@@ -24,8 +24,8 @@ const reload = () => {
 </script>
 
 <template>
-  <div class="bg-[url('@/assets/bg.png')] bg-[#6900c7] pb-[8rem]" ref="headRef">
-    <div class="pt-[10rem] md:px-[4rem] nr:px-[2rem] lg:px-[5rem] px-[1rem]">
+  <div class="join-head bg-[url('@/assets/bg.png')] bg-[#6900c7] pb-[8rem]" ref="headRef">
+    <div class="join-head__content pt-[10rem] md:px-[4rem] nr:px-[2rem] lg:px-[5rem] px-[1rem]">
       <div class="flex flex-col lg:flex-row justify-center align-middle py-8 xl:max-w-[1140px] mx-[auto]">
         <head-slogan :drop="drop"/>
         <pc-form v-if="isShow" :reload="reload" class="hidden mo:block"/>
@@ -34,4 +34,16 @@ const reload = () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 965px) {
+  .join-head__content {
+    padding-top: 7rem;
+  }
+
+  .join-head {
+    padding-bottom: 4rem;
+  }
+}
+</style>
 

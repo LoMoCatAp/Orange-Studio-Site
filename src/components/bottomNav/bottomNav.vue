@@ -63,7 +63,7 @@
 
     <!-- 版权信息区域 -->
     <div class="copyright">
-        <p>Copyright © 2015-2025齐鲁工业大学网络信息中心橙果工作室</p>
+        <p>Copyright © 2015-2026齐鲁工业大学网络信息中心橙果工作室</p>
         <p>本站点由橙果工作室前端组提供技术支持</p>
     </div>
 
@@ -116,17 +116,13 @@
     }
 </script>
 <style scoped>
-     body {
-            font-family: "微软雅黑", sans-serif;
-            color: #5a5555;
-            /* 文字默认灰色 */
-        }
-
         /* 底部导航容器：Flex布局，左Logo + 右导航列 */
         .footer-container {
             display: flex;
             padding: 40px 80px;
-            border-bottom: 1px solid #eee;
+            color: var(--color-text);
+            background: var(--color-background);
+            border-bottom: 1px solid var(--color-border);
             /* 底部分隔线 */
         }
 
@@ -142,6 +138,7 @@
             width: 150px;
             height: 140px;
             margin-right: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
 
         .logo-text .logo-title {
@@ -169,7 +166,7 @@
 
         .column-title {
             font-size: 18px;
-            color: #5a5555;
+            color: var(--color-heading);
             margin-bottom: 15px;
             font-weight: 600;
         }
@@ -184,13 +181,13 @@
         }
 
         .nav-list a {
-            color: #5a5555;
+            color: var(--color-text-secondary);
             font-size: 14px;
             text-decoration: none;
         }
 
         .nav-list a:hover {
-            color: #acacac;
+            color: var(--color-heading);
             text-decoration: underline;
         }
 
@@ -198,10 +195,54 @@
         .copyright {
             padding: 20px 80px;
             font-size: 14px;
-            color: #999;
+            color: var(--color-text-secondary);
             display: flex;
             justify-content: space-between;
             /* 左右分布 */
-            background-color: #f8f8f8;
+            background-color: var(--color-background-soft);
+        }
+
+        @media (max-width: 600px) {
+            .footer-container {
+                flex-direction: column;
+                padding: 32px 24px;
+            }
+
+            .footer-logo {
+                margin: 0 0 24px;
+                justify-content: center;
+            }
+
+            .footer-logo img {
+                width: 132px;
+                height: auto;
+                margin: 0;
+            }
+
+            .footer-navs {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 24px 16px;
+            }
+
+            .nav-column {
+                min-width: 0;
+            }
+
+            .column-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .nav-list li {
+                margin-bottom: 8px;
+            }
+
+            .copyright {
+                flex-direction: column;
+                gap: 4px;
+                padding: 16px 24px;
+                text-align: center;
+            }
         }
 </style>

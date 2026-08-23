@@ -171,17 +171,58 @@ getAllData();
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+  .lx-department-container {
+    min-height: auto;
+    padding: 104px 0 32px;
+  }
+
+  .top-section {
+    flex: none;
+    gap: 16px;
+    margin: 0 0 24px;
+    padding: 0 20px;
+  }
+
   .bottom-section {
+    flex: none;
     flex-direction: column;
+    gap: 20px;
+    max-height: none;
+    padding: 0 20px;
+  }
+
+  .bottom-left-box,
+  .bottom-right-box {
+    width: 100%;
+  }
+
+  .bottom-left-box {
+    min-height: 200px;
   }
   
   .top-text-box h1 {
-    font-size: 2rem;
+    font-size: 2.25rem;
+    margin: 0;
   }
   
   .top-image-box img {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 120px;
+    max-height: 120px;
+  }
+
+  .bottom-right-box {
+    padding: 20px;
+  }
+
+  .bottom-right-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .bottom-right-box p,
+  .description-html :deep(p) {
+    font-size: 1rem;
+    line-height: 1.8;
   }
 }
 </style>

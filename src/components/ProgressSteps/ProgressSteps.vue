@@ -32,22 +32,22 @@ defineProps({
   margin-top: 16px;
 }
 .steps-container {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 55px 20px;
   min-height: 180px; /* 强制统一高度 */
-  background: #fff;
+  background: var(--color-surface);
   width: 100%;
   box-sizing: border-box;
-  box-shadow: 0 2px 8px rgba(31, 45, 61, 0.06);
+  box-shadow: 0 2px 8px var(--color-card-shadow);
   transition:
     box-shadow 0.2s ease,
     border-color 0.2s ease,
     transform 0.08s ease;
 }
 .steps-container:hover {
-  box-shadow: 0 8px 24px rgba(31, 45, 61, 0.18);
-  border-color: #c7d2fe;
+  box-shadow: 0 8px 24px var(--color-card-shadow);
+  border-color: var(--color-border-hover);
   transform: translateY(-2px);
 }
 .steps {
@@ -65,7 +65,7 @@ defineProps({
   left: 30px;
   right: 30px;
   height: 1px;
-  background: #e5e7eb;
+  background: var(--color-border);
   z-index: 1;
 }
 .step {
@@ -73,7 +73,7 @@ defineProps({
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  color: #9ca3af;
+  color: var(--color-text-secondary);
   position: relative;
   z-index: 2;
   text-align: center;
@@ -85,7 +85,7 @@ defineProps({
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: #e5e7eb;
+  background: var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,7 +119,7 @@ defineProps({
     left: 14px;
     width: 1px;
     height: auto;
-    background: #e5e7eb;
+    background: var(--color-border);
     z-index: 1;
   }
   .step {

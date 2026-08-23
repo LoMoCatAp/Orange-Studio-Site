@@ -4,7 +4,7 @@ defineProps(['drop']);
 
 
 <template>
-  <div class="mx-4 sm:mx-16 flex flex-col items-start flex-1 justify-center">
+  <div class="head-slogan mx-4 sm:mx-16 flex flex-col items-start flex-1 justify-center">
     <div class="text-[#6900c7] bg-[#d4c2ef] rounded-[20px] py-1 px-4 text-xs mb-4 inline-block">加入我们, 一起成长吧! </div>
     <h1 class="font-normal text-white text-5xl leading-[1.2]">在橙果,</h1>
     <h1 class="font-normal text-white text-5xl leading-[1.2]">发掘你的潜力,</h1>
@@ -22,6 +22,18 @@ defineProps(['drop']);
 h1 {
   margin: 0;
 }
+
+@media (max-width: 600px) {
+  .head-slogan h1 {
+    font-size: 2.25rem;
+  }
+
+  .head-slogan p,
+  .head-slogan > div:last-child {
+    font-size: 1rem;
+  }
+}
+
 .bounce {
   animation-name: bounce;
   animation-duration: 2s;

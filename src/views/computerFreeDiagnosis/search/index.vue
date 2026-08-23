@@ -44,8 +44,8 @@ const submitEvaluation = async () => {
 </script>
 
 <template>
-  <div class="pt-[8rem]">
-    <div class="mx-10">
+  <div class="diagnosis-search pt-[8rem]">
+    <div class="diagnosis-search__query mx-10">
       <input
         type="text"
         class="border-slate-200"
@@ -54,9 +54,9 @@ const submitEvaluation = async () => {
       />
       <button @click="searchProcess">查询</button>
     </div>
-    <div class="mx-10 my-10">
+    <div class="process-wrapper mx-10 my-10">
       <div
-        class="border border-slate-200 p-5 mo:p-20 mo:hidden rounded-xl hover:shadow-lg"
+        class="process-card border border-slate-200 p-5 mo:p-20 mo:hidden rounded-xl hover:shadow-lg"
       >
         <a-steps :current="userSteps.step" direction="vertical">
           <a-step
@@ -94,7 +94,7 @@ const submitEvaluation = async () => {
         </div>
       </div>
       <div
-        class="border border-slate-200 p-20 hidden mo:block rounded-xl hover:shadow-lg"
+        class="process-card border border-slate-200 p-20 hidden mo:block rounded-xl hover:shadow-lg"
       >
         <a-steps :current="userSteps.step">
           <a-step
@@ -136,15 +136,59 @@ const submitEvaluation = async () => {
 </template>
 
 <style scoped>
+.diagnosis-search {
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.diagnosis-search__query input,
+.diagnosis-search__query button {
+  background: var(--color-input);
+  color: var(--color-text);
+  border-color: var(--color-input-border);
+}
+
+.process-card {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  box-shadow: 0 2px 8px var(--color-card-shadow);
+}
+
+.process-card:hover {
+  box-shadow: 0 8px 24px var(--color-card-shadow);
+  border-color: var(--color-border-hover);
+}
+
 input {
   border-radius: 8px;
   padding: 10px;
-  border: 1px solid rgb(226 232 240);
+  border: 1px solid var(--color-input-border);
   margin-right: 30px;
 }
 button {
   border-radius: 8px;
   padding: 10px;
-  border: 1px solid rgb(226 232 240);
+  border: 1px solid var(--color-input-border);
+}
+
+@media (max-width: 768px) {
+  .diagnosis-search__query {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 16px;
+  }
+
+  .diagnosis-search__query input,
+  .diagnosis-search__query button {
+    width: 100%;
+    min-height: 44px;
+    margin: 0;
+  }
+
+  .process-wrapper {
+    margin: 24px 16px;
+  }
 }
 </style>
