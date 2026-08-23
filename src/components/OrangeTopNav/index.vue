@@ -8,8 +8,8 @@
       <nav class="nav-right" v-if="!isMobile">
         <a class="nav-item" @click="goHome">官网主页</a>
 
-        <div class="nav-item dropdown" @mouseenter="openMenu('dept')" @mouseleave="scheduleMenuClose">
-          <span @click="goToDepartments">工作部门</span>
+        <div class="nav-item dropdown" @click="goToDepartments" @mouseenter="openMenu('dept')" @mouseleave="scheduleMenuClose">
+          <span>工作部门</span>
           <div v-if="active === 'dept'" class="dropdown-menu" @click.stop>
             <div class="menu-item" @click="jump('/orange学习部')">
               <strong>学习部</strong>
@@ -31,9 +31,9 @@
           </div>
         </div>
 
-        <div class="nav-item dropdown" @mouseenter="openMenu('group')" @mouseleave="scheduleMenuClose">
+        <div class="nav-item dropdown" @click="goToGroups" @mouseenter="openMenu('group')" @mouseleave="scheduleMenuClose">
           <span>学习小组</span>
-          <div v-if="active === 'group'" class="dropdown-menu">
+          <div v-if="active === 'group'" class="dropdown-menu" @click.stop>
             <div class="menu-item" @click="jump('/full-stack')">
               <strong>全栈组</strong>
               <p>码出梦想，码出未来</p>
@@ -61,7 +61,7 @@
           </div>
         </div>
 
-        <div class="nav-item dropdown" @mouseenter="openMenu('base')" @mouseleave="scheduleMenuClose">
+        <div class="nav-item dropdown" @click="goToQuickAccess" @mouseenter="openMenu('base')" @mouseleave="scheduleMenuClose">
           <span>橙果基建</span>
           <div v-if="active === 'base'" class="dropdown-menu align-right">
             <div class="menu-item" @click="jump('/Register')">在线报名</div>
@@ -169,17 +169,27 @@ const goHome = () => {
 }
 
 const goToDepartments = () => {
+  scrollToHomeSection('departments')
+}
+
+const goToGroups = () => {
+  scrollToHomeSection('groups')
+}
+
+const goToQuickAccess = () => {
+  scrollToHomeSection('quick-access')
+}
+
+const scrollToHomeSection = (sectionId: string) => {
   if (route.path === '/') {
-    // 如果已经在首页，滚动到工作部门区域
-    const element = document.getElementById('departments')
+    const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   } else {
-    // 如果不在首页，跳转到首页并滚动到工作部门区域（覆盖当前界面）
     router.replace('/').then(() => {
       setTimeout(() => {
-        const element = document.getElementById('departments')
+        const element = document.getElementById(sectionId)
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
@@ -281,9 +291,13 @@ onUnmounted(() => {
 
 .nav-item {
   position: relative;
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
   cursor: pointer;
   color: #ffffff;
-  line-height: 96px;
+  line-height: normal;
   transition: color 0.15s ease, text-shadow 0.15s ease;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
@@ -298,19 +312,20 @@ onUnmounted(() => {
 .nav-item::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 14px;
+  right: 14px;
   bottom: 18px;
-  width: 0;
   height: 2px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 1px;
-  transition: width 0.15s ease;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   box-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
 }
 
 .nav-item:hover::after {
-  width: 100%;
+  transform: scaleX(1);
 }
 
 .dropdown {

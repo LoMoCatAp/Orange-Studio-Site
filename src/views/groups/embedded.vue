@@ -30,6 +30,6 @@ const variableImage = new URL('@/assets/program.jpg', import.meta.url).href
 <style scoped>
 .develop-department-page {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 </style>

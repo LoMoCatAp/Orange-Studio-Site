@@ -12,7 +12,9 @@ const dataOrangeRoot = ref<HTMLElement | null>(null)
 let logoRevealObserver: IntersectionObserver | undefined
 
 onMounted(() => {
-  const logoSlots = dataOrangeRoot.value?.querySelectorAll<HTMLElement>('.company-reveal') ?? []
+  const revealItems = dataOrangeRoot.value?.querySelectorAll<HTMLElement>(
+    '.data-stat-reveal, .company-reveal',
+  ) ?? []
   const reveal = (element: HTMLElement) => element.classList.add('is-visible')
 
   if ('IntersectionObserver' in window) {
@@ -27,9 +29,9 @@ onMounted(() => {
       },
       { threshold: 0.2 },
     )
-    logoSlots.forEach((slot) => logoRevealObserver?.observe(slot))
+    revealItems.forEach((item) => logoRevealObserver?.observe(item))
   } else {
-    logoSlots.forEach(reveal)
+    revealItems.forEach(reveal)
   }
 })
 
@@ -45,17 +47,17 @@ onUnmounted(() => logoRevealObserver?.disconnect())
         </div> -->
       </div>
       <div class="flex flex-col item-center space-y-4 space-x-0 mb-16 nr:flex-row nr:space-y-0 nr:justify-around nr:space-x-4">
-        <div class="nr:w-[33%] text-center">
+        <div class="data-stat-reveal nr:w-[33%] text-center">
           <h1 class="text-4xl font-bold mb-2 text-blue-500">600+</h1>
           <p class="text-base mb-2">往届与当届橙果工作室成员总数</p>
           <p class="data-detail text-sm">橙果工作室自2015年起在学校网络信息中心成立, 经过数年的发展, 至今已经有总约400余名工作室成员。</p>
         </div>
-        <div class="nr:w-[33%] text-center">
+        <div class="data-stat-reveal nr:w-[33%] text-center">
           <h1 class="text-4xl font-bold mb-2 text-orange-500">20+</h1>
           <p class="text-base mb-2">认可工作室成员的企事业单位</p>
           <p class="data-detail text-sm">我们的优秀成员得到了多家知名企业的认可, 如字节跳动, 阿里巴巴, 水滴筹, 浪潮集团等。</p>
         </div>
-        <div class="nr:w-[33%] text-center">
+        <div class="data-stat-reveal nr:w-[33%] text-center">
           <h1 class="text-4xl font-bold mb-2 text-green-500">45+</h1>
           <p class="text-base mb-2">工作室成员服务过的校院系部门</p>
           <p class="data-detail text-sm">工作室的服务面向全校师生, 我们已为校内众多院系部门负责过计算机安装维修, 官网更新维护等工作。</p>
@@ -98,7 +100,7 @@ onUnmounted(() => logoRevealObserver?.disconnect())
       </div>
       <div class="flex flex-col items-center space-y-4 space-x-0 nr:flex-row nr:space-y-0 nr:justify-around nr:space-x-4">
         <div class="company-logo-slot company-reveal nr:w-[50%]">
-          <img class="company-logo company-logo-compact" :src="jingdong" alt="京东">
+          <img class="company-logo company-logo-compact company-logo-jingdong" :src="jingdong" alt="京东">
         </div>
         <div class="company-logo-slot company-reveal nr:w-[50%]">
           <img class="company-logo company-logo-compact" :src="zijie" alt="字节跳动">
@@ -124,6 +126,24 @@ onUnmounted(() => logoRevealObserver?.disconnect())
   color: var(--color-text-secondary);
 }
 
+.data-stat-reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  will-change: opacity, transform;
+}
+
+.data-stat-reveal.is-visible {
+  animation: dataStatReveal 880ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.data-stat-reveal:nth-child(2) {
+  animation-delay: 180ms;
+}
+
+.data-stat-reveal:nth-child(3) {
+  animation-delay: 360ms;
+}
+
 .company-logo-slot {
   min-height: 104px;
   display: flex;
@@ -139,11 +159,11 @@ onUnmounted(() => logoRevealObserver?.disconnect())
 }
 
 .company-reveal.is-visible {
-  animation: companyReveal 0.86s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: companyReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .company-reveal:nth-child(2) {
-  animation-delay: 150ms;
+  animation-delay: 280ms;
 }
 
 .company-logo-slot.is-visible:hover {
@@ -161,6 +181,17 @@ onUnmounted(() => logoRevealObserver?.disconnect())
   }
 }
 
+@keyframes dataStatReveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .company-logo {
   display: block;
   width: auto;
@@ -173,6 +204,10 @@ onUnmounted(() => logoRevealObserver?.disconnect())
 .company-logo-compact {
   max-width: 360px;
   max-height: 72px;
+}
+
+.company-logo-jingdong {
+  forced-color-adjust: none;
 }
 
 .alibaba-brand {
@@ -290,6 +325,10 @@ onUnmounted(() => logoRevealObserver?.disconnect())
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35));
   }
 
+  .company-logo-jingdong {
+    filter: none;
+  }
+
 }
 
 @media (max-width: 600px) {
@@ -348,6 +387,8 @@ onUnmounted(() => logoRevealObserver?.disconnect())
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .data-stat-reveal,
+  .data-stat-reveal.is-visible,
   .company-reveal,
   .company-reveal.is-visible {
     animation: none;

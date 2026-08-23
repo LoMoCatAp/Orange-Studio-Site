@@ -477,7 +477,7 @@ onUnmounted(() => {
   justify-content: center;
   position: relative;
   overflow: hidden;
-  margin-top: 96px; /* 导航栏高度 */
+  margin-top: 96px;
 }
 
 .hero-section::before {
@@ -765,6 +765,7 @@ onUnmounted(() => {
 /* 工作部门 */
 .departments-section {
   background: var(--color-background);
+  scroll-margin-top: 96px;
 }
 
 .departments-grid {
@@ -808,6 +809,7 @@ onUnmounted(() => {
 /* 学习小组 */
 .groups-section {
   background: var(--color-background-soft);
+  scroll-margin-top: 96px;
 }
 
 .groups-grid {
@@ -846,6 +848,7 @@ onUnmounted(() => {
 /* 快速入口 - 使用橙绿渐变 */
 .quick-access-section {
   background: var(--color-background);
+  scroll-margin-top: 96px;
 }
 
 .quick-access-grid {
@@ -970,6 +973,10 @@ onUnmounted(() => {
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #fff;
+  color-scheme: only light;
+  forced-color-adjust: none;
 }
 
 .join-orange-cta::before {
@@ -1023,8 +1030,8 @@ onUnmounted(() => {
 .join-orange-cta-wrap.can-animate.is-visible.is-entered .join-orange-cta:hover {
   animation: none;
   opacity: 1;
+  background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
   transform: translate3d(0, -2px, 0);
-  filter: brightness(1.08);
   box-shadow: 0 12px 28px rgba(59, 130, 246, 0.52);
 }
 
@@ -1036,8 +1043,8 @@ onUnmounted(() => {
 .join-orange-cta-wrap.can-animate.is-visible.is-entered .join-orange-cta:active {
   animation: none;
   opacity: 1;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
   transform: translate3d(0, 1px, 0) scale(0.96);
-  filter: brightness(0.94);
   box-shadow: 0 3px 8px rgba(30, 64, 175, 0.42);
   transition-duration: 70ms;
 }
@@ -1149,9 +1156,16 @@ onUnmounted(() => {
   }
 
   .hero-section {
-    padding: 0 16px;
+    padding: 80px 16px 0;
     height: 100vh;
     min-height: 100vh;
+    margin-top: 0;
+  }
+
+  .departments-section,
+  .groups-section,
+  .quick-access-section {
+    scroll-margin-top: 80px;
   }
 
   .hero-title {
