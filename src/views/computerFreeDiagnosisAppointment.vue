@@ -102,7 +102,7 @@
                     </div>
                     
                     <div class="bo kong">
-                        <button type="submit">提交预约工单</button>
+                        <button class="blue-action-cta" type="submit">提交预约工单</button>
                     </div>
                 </form>
             </div>

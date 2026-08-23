@@ -96,7 +96,7 @@ const modelWidth = computed(() => document.documentElement.clientWidth * 0.8);
             </p> -->
           </div>
         </a-form-item>
-        <button class="bg-blue-500 py-4 text-white font-bold rounded-full" html-type="submit">
+        <button class="blue-action-cta bg-blue-500 py-4 text-white font-bold rounded-full" html-type="submit">
           提交预约工单
         </button>
       </a-form>

@@ -81,7 +81,7 @@ const handleSubmit = async ({ values, errors }: any) => {
           }" allow-clear />
         </a-form-item>
         <!-- <button disabled class="bg-blue-400 py-4 text-white font-bold rounded-full cursor-not-allowed">2023年纳新已经结束, 我们下次再见</button> -->
-        <button class="bg-blue-500 py-4 text-white font-bold rounded-full" html-type="submit">提交报名表</button>
+        <button class="blue-action-cta bg-blue-500 py-4 text-white font-bold rounded-full" html-type="submit">提交报名表</button>
       </a-form>
     </div>
   </div>

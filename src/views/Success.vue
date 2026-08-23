@@ -71,7 +71,7 @@
       <div class="bottom-section">
         <p class="prompt">准备好了吗?</p>
         <p class="sub-prompt">点击填写你的报名表吧!</p>
-        <button class="btn-write" @click="goToRegister">点击填写</button>
+        <button class="btn-write blue-action-cta" @click="goToRegister">点击填写</button>
       </div>
     </main>
   </div>

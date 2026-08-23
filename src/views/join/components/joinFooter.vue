@@ -14,7 +14,7 @@ const backToTop = () => {
       <h1 class="join-footer__text text-[1.1rem] font-normal leading-[1.5]">点击填写你的报名表吧! </h1>
     </div>
     <div>
-      <button class="bg-blue-500 px-6 py-3 rounded-full text-[0.9rem] font-bold text-white" @click="backToTop">点击填写</button>
+      <button class="blue-action-cta bg-blue-500 px-6 py-3 rounded-full text-[0.9rem] font-bold text-white" @click="backToTop">点击填写</button>
     </div>
   </div>
 </template>
